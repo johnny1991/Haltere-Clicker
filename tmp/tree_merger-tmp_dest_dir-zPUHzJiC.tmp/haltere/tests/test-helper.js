@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/tests/test-helper.js

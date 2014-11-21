@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/tmp/custom_static_compiler-tmp_dest_dir-kr44gsYy.tmp/ember-cli-shims/README.md

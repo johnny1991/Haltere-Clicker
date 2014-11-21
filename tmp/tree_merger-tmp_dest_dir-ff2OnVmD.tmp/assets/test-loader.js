@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/bower_components/ember-cli-test-loader/test-loader.js

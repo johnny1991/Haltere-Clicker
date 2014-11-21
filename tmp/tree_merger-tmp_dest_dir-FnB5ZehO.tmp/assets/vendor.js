@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/tmp/concat-tmp_dest_dir-Vu2bA9sN.tmp/assets/vendor.js

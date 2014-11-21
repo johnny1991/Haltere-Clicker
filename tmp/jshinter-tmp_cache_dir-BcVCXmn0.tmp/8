@@ -1,0 +1,4 @@
+module('JSHint - routes');
+test('routes/index.js should pass jshint', function() { 
+  ok(false, 'routes/index.js should pass jshint.\nroutes/index.js: line 6, col 9, \'$\' is not defined.\nroutes/index.js: line 6, col 27, \'model\' is not defined.\n\n2 errors'); 
+});

@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/node_modules/ember-cli/lib/broccoli/testem.js

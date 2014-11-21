@@ -1,0 +1,129 @@
+import Ember from 'ember';
+
+var controller = Ember.ObjectController.extend({
+    // INIT
+    init : function(){
+        $( document ).ready(function() {
+            var height = $(window).height();
+
+            // LEFT SIDE
+            var left = $('.left');
+            left.height(height);
+
+            // CENTER
+            var center = $('.center');
+            var center_content = center.find('.content');
+            var center_bodybuilder = center.find('.bodybuilder');
+            var center_evolution = center.find('.evolution');
+
+            center.height(height);
+            center_content.height(height);
+            center_bodybuilder.height(height - center_evolution.outerHeight(true));
+
+            // RIGHT SIDE
+            var right = $('.right');
+            right.height(height);
+        });
+    },
+    // ACTIONS
+    actions:{
+        incrementPoint : function(game){
+            if(game.finish){
+                return;
+            }
+
+            // IF WE WANT USE COOKIES
+            // $.cookie('total', game.total);
+            // $.cookie('score', game.score);
+            // $.cookie('level', game.level.id);
+            // TODO -> EXERCICES
+
+            // UPDATE SCORE AND TOTAL GAME
+            game.set('score', game.score + game.hpc);
+            game.set('total', game.total + game.hpc);
+
+            // ANIMATE HALTERE
+            $('.haltere_image').animate({top:'5px'}, 40);
+            $('.haltere_image').animate({top:'0px'}, 40);
+
+            this.updateLevels(); // UPDATE LEVELS
+            this.updateExercices(); // UPDATE EXERCICES
+        },
+        addExercice : function(exercice){
+            var game = this.get('model.game');
+
+            // IF WE CAN'T BUY EXERCICE
+            if(game.score < exercice.points){
+                return;
+            }
+
+            // UPDATE QUANTITY EXERCICE
+            exercice.set('quantity', exercice.quantity + 1);
+
+            //UPDATE SCORE AND HPC GAME
+            game.set('hpc', game.hpc + exercice.hpc);
+            game.set('score', game.score - exercice.points);
+
+            this.updateExercices();
+
+            // UPDATE POINT EXERCICE
+            exercice.set('points', Math.round(exercice.points * 1.15 * 1) / 1);
+        },
+        reset : function(){
+            console.log(this.get('model'));
+            this.get('model').destroy();
+            this.get('model').create();
+        }
+    },
+
+    // FUNCTIONS
+    updateLevels: function(){
+        var game = this.get('model.game');
+        var level = game.level;
+        var previousLevel = this.getPreviousLevel();
+        var firstInterval = previousLevel ? previousLevel.points : 0;
+        var secondInterval = level.points;
+        var total = game.total;
+        var progressInPercent = (total - firstInterval) / (secondInterval-firstInterval) * 100;
+
+        // IF THE GAME IS FINISH
+        if((this.getNextLevel() == undefined) && (progressInPercent >= 100)){
+            game.set('finish', true);
+            $('#finishGame').modal('show');
+        }
+
+        // CHANGE THE BODYBUILDER CLASS AND LEVEL
+        if((total >= secondInterval)){
+            this.set('bodybuilder', 'bodybuilder_' + level.id);
+            game.set('level', this.getNextLevel());
+            if(game.level){
+                progressInPercent = 0;
+            }
+        }
+
+        // CHANGE PROGRESS BAR VALUE
+        this.set('progress-width', "width: " + progressInPercent + "%");
+
+    },
+    getPreviousLevel : function(){
+        var game = this.get('model.game');
+        return game.levels[($.inArray(game.level, game.levels) - 1)];
+    },
+    getNextLevel : function(){
+        var game = this.get('model.game');
+        return game.levels[($.inArray(game.level, game.levels) + 1)];
+    },
+    updateExercices : function(){
+        var game = this.get('model.game');
+        $.each(this.get('model.exercice'), function(index, exercice){
+
+            // DISPLAY TITLE IF NEEDED
+            exercice.set('displayTitle', (game.total >= (exercice.points * game.coefficientDisplay)));
+
+            // SHOW EXERCICE IN FRONT
+            this.set('canbuy', (game.score >= exercice.points));
+        });
+    }
+});
+
+export default controller;

@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/app/controllers/index.js

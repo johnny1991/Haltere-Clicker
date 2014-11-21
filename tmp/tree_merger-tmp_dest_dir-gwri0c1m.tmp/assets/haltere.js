@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/tmp/concat-tmp_dest_dir-aFu4ZaKT.tmp/assets/haltere.js

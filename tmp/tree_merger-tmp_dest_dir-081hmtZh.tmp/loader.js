@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/bower_components/loader.js

@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/tmp/tree_merger-tmp_dest_dir-KRlWwu7E.tmp/bower_components/ember-cli-test-loader/test-loader.js

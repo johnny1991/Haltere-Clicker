@@ -1,0 +1,4 @@
+module('JSHint - controllers');
+test('controllers/index.js should pass jshint', function() { 
+  ok(false, 'controllers/index.js should pass jshint.\ncontrollers/index.js: line 105, col 29, Expected \'===\' and instead saw \'==\'.\ncontrollers/index.js: line 6, col 9, \'$\' is not defined.\ncontrollers/index.js: line 7, col 26, \'$\' is not defined.\ncontrollers/index.js: line 10, col 24, \'$\' is not defined.\ncontrollers/index.js: line 14, col 26, \'$\' is not defined.\ncontrollers/index.js: line 24, col 25, \'$\' is not defined.\ncontrollers/index.js: line 38, col 13, \'$\' is not defined.\ncontrollers/index.js: line 39, col 13, \'$\' is not defined.\ncontrollers/index.js: line 104, col 16, \'$\' is not defined.\ncontrollers/index.js: line 110, col 29, \'$\' is not defined.\ncontrollers/index.js: line 122, col 9, \'$\' is not defined.\ncontrollers/index.js: line 70, col 13, \'levels\' is defined but never used.\n\n12 errors'); 
+});

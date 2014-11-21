@@ -1,0 +1,1 @@
+/home/johnny/workspace/ember/haltere/tmp/custom_static_compiler-tmp_dest_dir-OoG8kxwR.tmp/qunit/qunit/qunit.js

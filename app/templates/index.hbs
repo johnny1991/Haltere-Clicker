@@ -1,0 +1,66 @@
+{{outlet}}
+<div class="col-xs-4 left">
+    <div class="row game_title">
+        <div class="col-xs-12">
+            <h1>{{game.title}}</h1>
+        </div>
+    </div>
+    <div class="row score">
+        <div class="col-xs-12">
+            <div class="points"><span>{{ game.score }} haltère{{#if game.showPointPlural }}s{{/if}}</span></div>
+            <div class="hpc"><span>{{game.hpc}}</span><span> haltère{{#if game.showHpcPlural }}s{{/if}} par clic</span></div>
+        </div>
+    </div>
+    <div class="row haltere">
+        <div class="col-xs-12">
+            <div class="haltere_image" {{action 'incrementPoint' game}}></div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-4 center">
+    <div class="content">
+        <div class="row bodybuilder" {{bind-attr class="bodybuilder"}}></div>
+        <div class="row evolution">
+            <h3>Evolution</h3>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" {{bind-attr style="progress-width"}}></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-4 right">
+    <div class="exercices">
+        <div class="row exercices_title">
+            <div class="col-xs-12">
+                <h3>Exercices</h3>
+            </div>
+        </div>
+        {{#each exercice}}
+            <div class="row exercice" {{bind-attr class="canbuy:enable:disable"}} {{action 'addExercice' this}}>
+                <div class="informations">
+                    <span class="title">
+                        {{#if displayTitle}}
+                            {{title}}
+                        {{else}}
+                            ???
+                        {{/if}}
+                    </span>
+                    <span class="points">{{points}}</span>
+                </div>
+                <span class="quantity">{{quantity}}</span>
+            </div>
+        {{/each}}
+    </div>
+</div>
+<div id="finishGame" class="modal fade">
+    <div class="modal-dialog modal-vertical-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Jeu Terminé</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
